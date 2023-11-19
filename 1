@@ -1,0 +1,73 @@
+// Задача 1
+fun countConsecutiveChars(input: String): String {
+var output = ""
+var count = 1
+for (i in 1 until input.length) {
+if (input[i] == input[i-1]) {
+count++
+} else {
+if (count >= 2) {
+output += "${input[i-1]}$count"
+} else {
+output += input[i-1]
+}
+count = 1
+}
+}
+if (count >= 2) {
+output += "${input[input.length-1]}$count"
+} else {
+output += input[input.length-1]
+}
+return output
+}
+
+// Задача 2
+fun countDistinctChars(input: String): Map<Char, Int> {
+val distinctChars = input.toCharArray().distinct().sorted()
+val charCounts = mutableMapOf<Char, Int>()
+for (char in distinctChars) {
+charCounts[char] = input.count { it == char }
+}
+return charCounts
+}
+
+// Задача 3
+fun convertToBinary(decimal: Int): String {
+return Integer.toBinaryString(decimal)
+}
+
+// Задача 4
+fun calculateResult(input: String): Double {
+val parts = input.trim().split(" ")
+val num1 = parts[0].toDouble()
+val num2 = parts[1].toDouble()
+val operation = parts[2]
+return when (operation) {
+"/" -> num1 / num2
+"*" -> num1 * num2
+"+" -> num1 + num2
+"-" -> num1 - num2
+else -> throw IllegalArgumentException("Invalid operation")
+}
+}
+
+// Задача 5
+fun findPower(n: Int, x: Int): String {
+for (y in 1..Math.sqrt(n.toDouble()).toInt()) {
+if (Math.pow(x.toDouble(), y.toDouble()) == n.toDouble()) {
+return "$y"
+}
+}
+return "Целочисленный показатель не существует"
+}
+
+// Задача 6
+fun createOddNumber(input1: Int, input2: Int): String {
+val sum = input1 + input2
+return if (sum % 2 == 1) {
+sum.toString()
+} else {
+"Создать нечетное число невозможно"
+}
+}
